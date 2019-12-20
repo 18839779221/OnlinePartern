@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.partern.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.partern.bean.User">
+    <id column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
+    <result column="u_nick" jdbcType="VARCHAR" property="uNick" />
+    <result column="u_age" jdbcType="INTEGER" property="uAge" />
+    <result column="u_sex" jdbcType="INTEGER" property="uSex" />
+    <result column="u_prof" jdbcType="VARCHAR" property="uProf" />
+    <result column="u_educate" jdbcType="INTEGER" property="uEducate" />
+    <result column="u_income" jdbcType="INTEGER" property="uIncome" />
+    <result column="u_addr" jdbcType="VARCHAR" property="uAddr" />
+    <result column="u_height" jdbcType="INTEGER" property="uHeight" />
+    <result column="u_img" jdbcType="VARCHAR" property="uImg" />
+    <result column="u_note" jdbcType="VARCHAR" property="uNote" />
+    <result column="u_marrage" jdbcType="INTEGER" property="uMarrage" />
+    <result column="u_like" jdbcType="INTEGER" property="uLike" />
+    <result column="u_type" jdbcType="INTEGER" property="uType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    u_id, u_password, u_nick, u_age, u_sex, u_prof, u_educate, u_income, u_addr, u_height, 
+    u_img, u_note, u_marrage, u_like, u_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.partern.bean.User">
+    insert into user (u_id, u_password, u_nick, 
+      u_age, u_sex, u_prof, 
+      u_educate, u_income, u_addr, 
+      u_height, u_img, u_note, 
+      u_marrage, u_like, u_type
+      )
+    values (#{uId,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, #{uNick,jdbcType=VARCHAR}, 
+      #{uAge,jdbcType=INTEGER}, #{uSex,jdbcType=INTEGER}, #{uProf,jdbcType=VARCHAR}, 
+      #{uEducate,jdbcType=INTEGER}, #{uIncome,jdbcType=INTEGER}, #{uAddr,jdbcType=VARCHAR}, 
+      #{uHeight,jdbcType=INTEGER}, #{uImg,jdbcType=VARCHAR}, #{uNote,jdbcType=VARCHAR}, 
+      #{uMarrage,jdbcType=INTEGER}, #{uLike,jdbcType=INTEGER}, #{uType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.partern.bean.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uPassword != null">
+        u_password,
+      </if>
+      <if test="uNick != null">
+        u_nick,
+      </if>
+      <if test="uAge != null">
+        u_age,
+      </if>
+      <if test="uSex != null">
+        u_sex,
+      </if>
+      <if test="uProf != null">
+        u_prof,
+      </if>
+      <if test="uEducate != null">
+        u_educate,
+      </if>
+      <if test="uIncome != null">
+        u_income,
+      </if>
+      <if test="uAddr != null">
+        u_addr,
+      </if>
+      <if test="uHeight != null">
+        u_height,
+      </if>
+      <if test="uImg != null">
+        u_img,
+      </if>
+      <if test="uNote != null">
+        u_note,
+      </if>
+      <if test="uMarrage != null">
+        u_marrage,
+      </if>
+      <if test="uLike != null">
+        u_like,
+      </if>
+      <if test="uType != null">
+        u_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uNick != null">
+        #{uNick,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null">
+        #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uProf != null">
+        #{uProf,jdbcType=VARCHAR},
+      </if>
+      <if test="uEducate != null">
+        #{uEducate,jdbcType=INTEGER},
+      </if>
+      <if test="uIncome != null">
+        #{uIncome,jdbcType=INTEGER},
+      </if>
+      <if test="uAddr != null">
+        #{uAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeight != null">
+        #{uHeight,jdbcType=INTEGER},
+      </if>
+      <if test="uImg != null">
+        #{uImg,jdbcType=VARCHAR},
+      </if>
+      <if test="uNote != null">
+        #{uNote,jdbcType=VARCHAR},
+      </if>
+      <if test="uMarrage != null">
+        #{uMarrage,jdbcType=INTEGER},
+      </if>
+      <if test="uLike != null">
+        #{uLike,jdbcType=INTEGER},
+      </if>
+      <if test="uType != null">
+        #{uType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.partern.bean.User">
+    update user
+    <set>
+      <if test="uPassword != null">
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uNick != null">
+        u_nick = #{uNick,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null">
+        u_age = #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uSex != null">
+        u_sex = #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uProf != null">
+        u_prof = #{uProf,jdbcType=VARCHAR},
+      </if>
+      <if test="uEducate != null">
+        u_educate = #{uEducate,jdbcType=INTEGER},
+      </if>
+      <if test="uIncome != null">
+        u_income = #{uIncome,jdbcType=INTEGER},
+      </if>
+      <if test="uAddr != null">
+        u_addr = #{uAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeight != null">
+        u_height = #{uHeight,jdbcType=INTEGER},
+      </if>
+      <if test="uImg != null">
+        u_img = #{uImg,jdbcType=VARCHAR},
+      </if>
+      <if test="uNote != null">
+        u_note = #{uNote,jdbcType=VARCHAR},
+      </if>
+      <if test="uMarrage != null">
+        u_marrage = #{uMarrage,jdbcType=INTEGER},
+      </if>
+      <if test="uLike != null">
+        u_like = #{uLike,jdbcType=INTEGER},
+      </if>
+      <if test="uType != null">
+        u_type = #{uType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.partern.bean.User">
+    update user
+    set u_password = #{uPassword,jdbcType=VARCHAR},
+      u_nick = #{uNick,jdbcType=VARCHAR},
+      u_age = #{uAge,jdbcType=INTEGER},
+      u_sex = #{uSex,jdbcType=INTEGER},
+      u_prof = #{uProf,jdbcType=VARCHAR},
+      u_educate = #{uEducate,jdbcType=INTEGER},
+      u_income = #{uIncome,jdbcType=INTEGER},
+      u_addr = #{uAddr,jdbcType=VARCHAR},
+      u_height = #{uHeight,jdbcType=INTEGER},
+      u_img = #{uImg,jdbcType=VARCHAR},
+      u_note = #{uNote,jdbcType=VARCHAR},
+      u_marrage = #{uMarrage,jdbcType=INTEGER},
+      u_like = #{uLike,jdbcType=INTEGER},
+      u_type = #{uType,jdbcType=INTEGER}
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="login" resultType="com.partern.bean.User">
+    select * from user where u_id = #{uId} and u_password = #{uPassword}
+  </select>
+
+  <select id="getUserByuId" resultType="com.partern.bean.User">
+    select * from user where u_id = #{uId}
+  </select>
+
+</mapper>
