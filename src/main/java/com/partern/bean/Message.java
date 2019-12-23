@@ -4,61 +4,63 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Message implements Serializable {
-//    private int m_id;           //消息id
-//    private String u_id1;       //用户1id
-//    private String u_id2;       //用户2id
-//    private String m_date;      //消息时间
-//    private String m_content;   //消息内容
+    private int m_id;           //消息id
+    private String u_id1;       //用户1id
+    private String u_id2;       //用户2id
+    private String m_date;      //消息时间
+    private String m_content;   //消息内容
 
-    private Integer mId;
-
-    private String uId1;
-
-    private String uId2;
-
-    private Date mDate;
-
-    private String mContent;
-
-    private static final long serialVersionUID = 1L;
-
-    public Integer getmId() {
-        return mId;
+    public int getM_id() {
+        return m_id;
     }
 
-    public void setmId(Integer mId) {
-        this.mId = mId;
+    public void setM_id(int m_id) {
+        this.m_id = m_id;
     }
 
-    public String getuId1() {
-        return uId1;
+    public String getU_id1() {
+        return u_id1;
     }
 
-    public void setuId1(String uId1) {
-        this.uId1 = uId1 == null ? null : uId1.trim();
+    public void setU_id1(String u_id1) {
+        this.u_id1 = u_id1;
     }
 
-    public String getuId2() {
-        return uId2;
+    public String getU_id2() {
+        return u_id2;
     }
 
-    public void setuId2(String uId2) {
-        this.uId2 = uId2 == null ? null : uId2.trim();
+    public void setU_id2(String u_id2) {
+        this.u_id2 = u_id2;
     }
 
-    public Date getmDate() {
-        return mDate;
+    public String getM_date() {
+        return m_date;
     }
 
-    public void setmDate(Date mDate) {
-        this.mDate = mDate;
+    public void setM_date(String m_date) {
+        this.m_date = m_date;
     }
 
-    public String getmContent() {
-        return mContent;
+    public String getM_content() {
+        return m_content;
     }
 
-    public void setmContent(String mContent) {
-        this.mContent = mContent == null ? null : mContent.trim();
+    public void setM_content(String m_content) {
+        this.m_content = m_content;
+    }
+
+    public Message() {
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "m_id=" + m_id +
+                ", u_id1='" + u_id1 + '\'' +
+                ", u_id2='" + u_id2 + '\'' +
+                ", m_date='" + m_date + '\'' +
+                ", m_content='" + m_content + '\'' +
+                '}';
     }
 }

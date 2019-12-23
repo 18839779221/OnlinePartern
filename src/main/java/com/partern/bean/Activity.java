@@ -5,61 +5,65 @@ import java.util.Date;
 
 public class Activity implements Serializable {
 
-//    private int a_id;       //活动id
-//    private String u_id;    //用户id
-//    private String a_date;  //活动日期
-//    private int a_type;     //活动类型
-//    private String a_content;   //活动内容
+    private int a_id;       //活动id
+    private String u_id;    //用户id
+    private String a_date;  //活动日期
+    private int a_type;     //活动类型
+    private String a_content;   //活动内容
 
-    private Integer aId;
-
-    private String uId;
-
-    private Date aDate;
-
-    private Integer aType;
-
-    private String aContent;
-
-    private static final long serialVersionUID = 1L;
-
-    public Integer getaId() {
-        return aId;
+    public Activity() {
     }
 
-    public void setaId(Integer aId) {
-        this.aId = aId;
+
+    public int getA_id() {
+        return a_id;
     }
 
-    public String getuId() {
-        return uId;
+    public void setA_id(int a_id) {
+        this.a_id = a_id;
     }
 
-    public void setuId(String uId) {
-        this.uId = uId == null ? null : uId.trim();
+    public String getU_id() {
+        return u_id;
     }
 
-    public Date getaDate() {
-        return aDate;
+    public void setU_id(String u_id) {
+        this.u_id = u_id;
     }
 
-    public void setaDate(Date aDate) {
-        this.aDate = aDate;
+    public String getA_date() {
+        return a_date;
     }
 
-    public Integer getaType() {
-        return aType;
+    public void setA_date(String a_date) {
+        this.a_date = a_date;
     }
 
-    public void setaType(Integer aType) {
-        this.aType = aType;
+    public int getA_type() {
+        return a_type;
     }
 
-    public String getaContent() {
-        return aContent;
+    public void setA_type(int a_type) {
+        this.a_type = a_type;
     }
 
-    public void setaContent(String aContent) {
-        this.aContent = aContent == null ? null : aContent.trim();
+    public String getA_content() {
+        return a_content;
+    }
+
+    public void setA_content(String a_content) {
+        this.a_content = a_content;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "a_id=" + a_id +
+                ", u_id='" + u_id + '\'' +
+                ", a_date='" + a_date + '\'' +
+                ", a_type=" + a_type +
+                ", a_content='" + a_content + '\'' +
+                '}';
     }
 }

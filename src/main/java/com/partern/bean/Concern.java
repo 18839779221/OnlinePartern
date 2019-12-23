@@ -3,50 +3,53 @@ package com.partern.bean;
 import java.io.Serializable;
 
 public class Concern implements Serializable {
-//    private int f_id;       //关注id
-//    private String u_id1;   //关注者
-//    private String u_id2;   //被关注者
-//    private int f_state;    //关注状态
+    private int f_id;       //关注id
+    private String u_id1;   //关注者
+    private String u_id2;   //被关注者
+    private int f_state;    //关注状态
 
-    private Integer fId;
-
-    private String uId1;
-
-    private String uId2;
-
-    private Integer fState;
-
-    private static final long serialVersionUID = 1L;
-
-    public Integer getfId() {
-        return fId;
+    public int getF_id() {
+        return f_id;
     }
 
-    public void setfId(Integer fId) {
-        this.fId = fId;
+    public void setF_id(int f_id) {
+        this.f_id = f_id;
     }
 
-    public String getuId1() {
-        return uId1;
+    public String getU_id1() {
+        return u_id1;
     }
 
-    public void setuId1(String uId1) {
-        this.uId1 = uId1 == null ? null : uId1.trim();
+    public void setU_id1(String u_id1) {
+        this.u_id1 = u_id1;
     }
 
-    public String getuId2() {
-        return uId2;
+    public String getU_id2() {
+        return u_id2;
     }
 
-    public void setuId2(String uId2) {
-        this.uId2 = uId2 == null ? null : uId2.trim();
+    public void setU_id2(String u_id2) {
+        this.u_id2 = u_id2;
     }
 
-    public Integer getfState() {
-        return fState;
+    public int getF_state() {
+        return f_state;
     }
 
-    public void setfState(Integer fState) {
-        this.fState = fState;
+    public void setF_state(int f_state) {
+        this.f_state = f_state;
+    }
+
+    public Concern() {
+    }
+
+    @Override
+    public String toString() {
+        return "Concern{" +
+                "f_id=" + f_id +
+                ", u_id1='" + u_id1 + '\'' +
+                ", u_id2='" + u_id2 + '\'' +
+                ", f_state=" + f_state +
+                '}';
     }
 }

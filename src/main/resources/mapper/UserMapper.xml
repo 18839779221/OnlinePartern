@@ -211,11 +211,15 @@
   </update>
 
   <select id="login" resultType="com.partern.bean.User">
-    select * from user where u_id = #{uId} and u_password = #{uPassword}
+    select * from user where u_id = #{u_id} and u_password = #{u_password}
   </select>
 
   <select id="getUserByuId" resultType="com.partern.bean.User">
     select * from user where u_id = #{uId}
+  </select>
+
+  <select id="findUsers" resultType="com.partern.bean.User">
+    select * from user
   </select>
 
 </mapper>
