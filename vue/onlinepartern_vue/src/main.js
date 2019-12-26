@@ -7,11 +7,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import QS from 'qs'
+import md5 from 'js-md5';
+
 
 
 Vue.prototype.qs = QS;
 Vue.prototype.$axios = axios;
-
+Vue.prototype.$md5 = md5;
 
 Vue.use(ElementUI)
 Vue.use(axios)

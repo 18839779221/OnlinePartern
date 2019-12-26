@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.partern.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.partern.bean.User">
-    <id column="u_id" jdbcType="VARCHAR" property="uId" />
-    <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
-    <result column="u_nick" jdbcType="VARCHAR" property="uNick" />
-    <result column="u_age" jdbcType="INTEGER" property="uAge" />
-    <result column="u_sex" jdbcType="INTEGER" property="uSex" />
-    <result column="u_prof" jdbcType="VARCHAR" property="uProf" />
-    <result column="u_educate" jdbcType="INTEGER" property="uEducate" />
-    <result column="u_income" jdbcType="INTEGER" property="uIncome" />
-    <result column="u_addr" jdbcType="VARCHAR" property="uAddr" />
-    <result column="u_height" jdbcType="INTEGER" property="uHeight" />
-    <result column="u_img" jdbcType="VARCHAR" property="uImg" />
-    <result column="u_note" jdbcType="VARCHAR" property="uNote" />
-    <result column="u_marrage" jdbcType="INTEGER" property="uMarrage" />
-    <result column="u_like" jdbcType="INTEGER" property="uLike" />
-    <result column="u_type" jdbcType="INTEGER" property="uType" />
+    <id column="u_id" jdbcType="VARCHAR" property="u_id" />
+    <result column="u_password" jdbcType="VARCHAR" property="u_password" />
+    <result column="u_nick" jdbcType="VARCHAR" property="u_nick" />
+    <result column="u_age" jdbcType="INTEGER" property="u_age" />
+    <result column="u_sex" jdbcType="INTEGER" property="u_sex" />
+    <result column="u_prof" jdbcType="VARCHAR" property="u_prof" />
+    <result column="u_educate" jdbcType="INTEGER" property="u_educate" />
+    <result column="u_income" jdbcType="INTEGER" property="u_income" />
+    <result column="u_addr" jdbcType="VARCHAR" property="u_addr" />
+    <result column="u_height" jdbcType="INTEGER" property="u_height" />
+    <result column="u_img" jdbcType="VARCHAR" property="u_img" />
+    <result column="u_note" jdbcType="VARCHAR" property="u_note" />
+    <result column="u_marrage" jdbcType="INTEGER" property="u_marrage" />
+    <result column="u_like" jdbcType="INTEGER" property="u_like" />
+    <result column="u_type" jdbcType="INTEGER" property="u_type" />
   </resultMap>
   <sql id="Base_Column_List">
     u_id, u_password, u_nick, u_age, u_sex, u_prof, u_educate, u_income, u_addr, u_height, 
@@ -26,11 +26,11 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where u_id = #{uId,jdbcType=VARCHAR}
+    where u_id = #{u_id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
-    where u_id = #{uId,jdbcType=VARCHAR}
+    where u_id = #{u_id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.partern.bean.User">
     insert into user (u_id, u_password, u_nick, 
@@ -39,175 +39,175 @@
       u_height, u_img, u_note, 
       u_marrage, u_like, u_type
       )
-    values (#{uId,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, #{uNick,jdbcType=VARCHAR}, 
-      #{uAge,jdbcType=INTEGER}, #{uSex,jdbcType=INTEGER}, #{uProf,jdbcType=VARCHAR}, 
-      #{uEducate,jdbcType=INTEGER}, #{uIncome,jdbcType=INTEGER}, #{uAddr,jdbcType=VARCHAR}, 
-      #{uHeight,jdbcType=INTEGER}, #{uImg,jdbcType=VARCHAR}, #{uNote,jdbcType=VARCHAR}, 
-      #{uMarrage,jdbcType=INTEGER}, #{uLike,jdbcType=INTEGER}, #{uType,jdbcType=INTEGER}
+    values (#{u_id,jdbcType=VARCHAR}, #{u_password,jdbcType=VARCHAR}, #{u_nick,jdbcType=VARCHAR}, 
+      #{u_age,jdbcType=INTEGER}, #{u_sex,jdbcType=INTEGER}, #{u_prof,jdbcType=VARCHAR}, 
+      #{u_educate,jdbcType=INTEGER}, #{u_income,jdbcType=INTEGER}, #{u_addr,jdbcType=VARCHAR}, 
+      #{u_height,jdbcType=INTEGER}, #{u_img,jdbcType=VARCHAR}, #{u_note,jdbcType=VARCHAR}, 
+      #{u_marrage,jdbcType=INTEGER}, #{u_like,jdbcType=INTEGER}, #{u_type,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.partern.bean.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uId != null">
+      <if test="u_id != null">
         u_id,
       </if>
-      <if test="uPassword != null">
+      <if test="u_password != null">
         u_password,
       </if>
-      <if test="uNick != null">
+      <if test="u_nick != null">
         u_nick,
       </if>
-      <if test="uAge != null">
+      <if test="u_age != null">
         u_age,
       </if>
-      <if test="uSex != null">
+      <if test="u_sex != null">
         u_sex,
       </if>
-      <if test="uProf != null">
+      <if test="u_prof != null">
         u_prof,
       </if>
-      <if test="uEducate != null">
+      <if test="u_educate != null">
         u_educate,
       </if>
-      <if test="uIncome != null">
+      <if test="u_income != null">
         u_income,
       </if>
-      <if test="uAddr != null">
+      <if test="u_addr != null">
         u_addr,
       </if>
-      <if test="uHeight != null">
+      <if test="u_height != null">
         u_height,
       </if>
-      <if test="uImg != null">
+      <if test="u_img != null">
         u_img,
       </if>
-      <if test="uNote != null">
+      <if test="u_note != null">
         u_note,
       </if>
-      <if test="uMarrage != null">
+      <if test="u_marrage != null">
         u_marrage,
       </if>
-      <if test="uLike != null">
+      <if test="u_like != null">
         u_like,
       </if>
-      <if test="uType != null">
+      <if test="u_type != null">
         u_type,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uId != null">
-        #{uId,jdbcType=VARCHAR},
+      <if test="u_id != null">
+        #{u_id,jdbcType=VARCHAR},
       </if>
-      <if test="uPassword != null">
-        #{uPassword,jdbcType=VARCHAR},
+      <if test="u_password != null">
+        #{u_password,jdbcType=VARCHAR},
       </if>
-      <if test="uNick != null">
-        #{uNick,jdbcType=VARCHAR},
+      <if test="u_nick != null">
+        #{u_nick,jdbcType=VARCHAR},
       </if>
-      <if test="uAge != null">
-        #{uAge,jdbcType=INTEGER},
+      <if test="u_age != null">
+        #{u_age,jdbcType=INTEGER},
       </if>
-      <if test="uSex != null">
-        #{uSex,jdbcType=INTEGER},
+      <if test="u_sex != null">
+        #{u_sex,jdbcType=INTEGER},
       </if>
-      <if test="uProf != null">
-        #{uProf,jdbcType=VARCHAR},
+      <if test="u_prof != null">
+        #{u_prof,jdbcType=VARCHAR},
       </if>
-      <if test="uEducate != null">
-        #{uEducate,jdbcType=INTEGER},
+      <if test="u_educate != null">
+        #{u_educate,jdbcType=INTEGER},
       </if>
-      <if test="uIncome != null">
-        #{uIncome,jdbcType=INTEGER},
+      <if test="u_income != null">
+        #{u_income,jdbcType=INTEGER},
       </if>
-      <if test="uAddr != null">
-        #{uAddr,jdbcType=VARCHAR},
+      <if test="u_addr != null">
+        #{u_addr,jdbcType=VARCHAR},
       </if>
-      <if test="uHeight != null">
-        #{uHeight,jdbcType=INTEGER},
+      <if test="u_height != null">
+        #{u_height,jdbcType=INTEGER},
       </if>
-      <if test="uImg != null">
-        #{uImg,jdbcType=VARCHAR},
+      <if test="u_img != null">
+        #{u_img,jdbcType=VARCHAR},
       </if>
-      <if test="uNote != null">
-        #{uNote,jdbcType=VARCHAR},
+      <if test="u_note != null">
+        #{u_note,jdbcType=VARCHAR},
       </if>
-      <if test="uMarrage != null">
-        #{uMarrage,jdbcType=INTEGER},
+      <if test="u_marrage != null">
+        #{u_marrage,jdbcType=INTEGER},
       </if>
-      <if test="uLike != null">
-        #{uLike,jdbcType=INTEGER},
+      <if test="u_like != null">
+        #{u_like,jdbcType=INTEGER},
       </if>
-      <if test="uType != null">
-        #{uType,jdbcType=INTEGER},
+      <if test="u_type != null">
+        #{u_type,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.partern.bean.User">
     update user
     <set>
-      <if test="uPassword != null">
-        u_password = #{uPassword,jdbcType=VARCHAR},
+      <if test="u_password != null">
+        u_password = #{u_password,jdbcType=VARCHAR},
       </if>
-      <if test="uNick != null">
-        u_nick = #{uNick,jdbcType=VARCHAR},
+      <if test="u_nick != null">
+        u_nick = #{u_nick,jdbcType=VARCHAR},
       </if>
-      <if test="uAge != null">
-        u_age = #{uAge,jdbcType=INTEGER},
+      <if test="u_age != null">
+        u_age = #{u_age,jdbcType=INTEGER},
       </if>
-      <if test="uSex != null">
-        u_sex = #{uSex,jdbcType=INTEGER},
+      <if test="u_sex != null">
+        u_sex = #{u_sex,jdbcType=INTEGER},
       </if>
-      <if test="uProf != null">
-        u_prof = #{uProf,jdbcType=VARCHAR},
+      <if test="u_prof != null">
+        u_prof = #{u_prof,jdbcType=VARCHAR},
       </if>
-      <if test="uEducate != null">
-        u_educate = #{uEducate,jdbcType=INTEGER},
+      <if test="u_educate != null">
+        u_educate = #{u_educate,jdbcType=INTEGER},
       </if>
-      <if test="uIncome != null">
-        u_income = #{uIncome,jdbcType=INTEGER},
+      <if test="u_income != null">
+        u_income = #{u_income,jdbcType=INTEGER},
       </if>
-      <if test="uAddr != null">
-        u_addr = #{uAddr,jdbcType=VARCHAR},
+      <if test="u_addr != null">
+        u_addr = #{u_addr,jdbcType=VARCHAR},
       </if>
-      <if test="uHeight != null">
-        u_height = #{uHeight,jdbcType=INTEGER},
+      <if test="u_height != null">
+        u_height = #{u_height,jdbcType=INTEGER},
       </if>
-      <if test="uImg != null">
-        u_img = #{uImg,jdbcType=VARCHAR},
+      <if test="u_img != null">
+        u_img = #{u_img,jdbcType=VARCHAR},
       </if>
-      <if test="uNote != null">
-        u_note = #{uNote,jdbcType=VARCHAR},
+      <if test="u_note != null">
+        u_note = #{u_note,jdbcType=VARCHAR},
       </if>
-      <if test="uMarrage != null">
-        u_marrage = #{uMarrage,jdbcType=INTEGER},
+      <if test="u_marrage != null">
+        u_marrage = #{u_marrage,jdbcType=INTEGER},
       </if>
-      <if test="uLike != null">
-        u_like = #{uLike,jdbcType=INTEGER},
+      <if test="u_like != null">
+        u_like = #{u_like,jdbcType=INTEGER},
       </if>
-      <if test="uType != null">
-        u_type = #{uType,jdbcType=INTEGER},
+      <if test="u_type != null">
+        u_type = #{u_type,jdbcType=INTEGER},
       </if>
     </set>
-    where u_id = #{uId,jdbcType=VARCHAR}
+    where u_id = #{u_id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.partern.bean.User">
     update user
-    set u_password = #{uPassword,jdbcType=VARCHAR},
-      u_nick = #{uNick,jdbcType=VARCHAR},
-      u_age = #{uAge,jdbcType=INTEGER},
-      u_sex = #{uSex,jdbcType=INTEGER},
-      u_prof = #{uProf,jdbcType=VARCHAR},
-      u_educate = #{uEducate,jdbcType=INTEGER},
-      u_income = #{uIncome,jdbcType=INTEGER},
-      u_addr = #{uAddr,jdbcType=VARCHAR},
-      u_height = #{uHeight,jdbcType=INTEGER},
-      u_img = #{uImg,jdbcType=VARCHAR},
-      u_note = #{uNote,jdbcType=VARCHAR},
-      u_marrage = #{uMarrage,jdbcType=INTEGER},
-      u_like = #{uLike,jdbcType=INTEGER},
-      u_type = #{uType,jdbcType=INTEGER}
-    where u_id = #{uId,jdbcType=VARCHAR}
+    set u_password = #{u_password,jdbcType=VARCHAR},
+      u_nick = #{u_nick,jdbcType=VARCHAR},
+      u_age = #{u_age,jdbcType=INTEGER},
+      u_sex = #{u_sex,jdbcType=INTEGER},
+      u_prof = #{u_prof,jdbcType=VARCHAR},
+      u_educate = #{u_educate,jdbcType=INTEGER},
+      u_income = #{u_income,jdbcType=INTEGER},
+      u_addr = #{u_addr,jdbcType=VARCHAR},
+      u_height = #{u_height,jdbcType=INTEGER},
+      u_img = #{u_img,jdbcType=VARCHAR},
+      u_note = #{u_note,jdbcType=VARCHAR},
+      u_marrage = #{u_marrage,jdbcType=INTEGER},
+      u_like = #{u_like,jdbcType=INTEGER},
+      u_type = #{u_type,jdbcType=INTEGER}
+    where u_id = #{u_id,jdbcType=VARCHAR}
   </update>
 
   <select id="login" resultType="com.partern.bean.User">
@@ -215,7 +215,7 @@
   </select>
 
   <select id="getUserByuId" resultType="com.partern.bean.User">
-    select * from user where u_id = #{uId}
+    select * from user where u_id = #{u_id}
   </select>
 
   <select id="findUsers" resultType="com.partern.bean.User">

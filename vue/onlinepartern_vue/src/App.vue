@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <router-view/>
+    <mainPage />
   </div>
 </template>
 
 <script>
+import mainPage from "@/pages/mainPage";
 export default {
-  name: 'App'
-}
+  name: "App",
+  components: { mainPage }
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

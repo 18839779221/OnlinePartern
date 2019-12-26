@@ -1,6 +1,7 @@
 package com.partern.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class User implements Serializable {
 
@@ -163,4 +164,16 @@ public class User implements Serializable {
                 ", u_type=" + u_type +
                 '}';
     }
+
+   public static List<User> noPassword(List<User> users){
+       for (User user: users) {
+           user.setU_password("");
+       }
+       return users;
+   }
+
+   public static User noPassword(User user){
+        user.setU_password("");
+        return user;
+   }
 }

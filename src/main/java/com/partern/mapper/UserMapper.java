@@ -1,5 +1,6 @@
 package com.partern.mapper;
 
+import com.partern.bean.MyResult;
 import com.partern.bean.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

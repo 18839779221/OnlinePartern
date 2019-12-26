@@ -1,12 +1,15 @@
 package com.partern.service;
 
-import com.partern.bean.MyResult;
 import com.partern.bean.User;
-import java.util.List;
+import com.partern.responsebo.ResponseEntity;
 
 public interface UserService {
 
-    MyResult login(String uId,String uPassword);
+    ResponseEntity login(String uId, String uPassword);
 
-    MyResult getUsers();
+    ResponseEntity getUsers();
+
+    ResponseEntity register(User user);
+
+    ResponseEntity getUserById(String phone);
 }

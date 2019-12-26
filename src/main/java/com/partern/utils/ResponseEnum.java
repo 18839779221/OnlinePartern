@@ -5,7 +5,7 @@ package com.partern.utils;
 /**
  * @description: 返回的错误码枚举类
  */
-public enum ResultEnum {
+public enum ResponseEnum {
  
     SUCCESS(101,"成功"),
     FAILURE(102,"失败"),
@@ -16,13 +16,14 @@ public enum ResultEnum {
     USER_LOGOUT_SUCCESS(205,"用户登出成功"),
     TOKEN_IS_BLACKLIST(206,"此token为黑名单"),
     LOGIN_IS_OVERDUE(207,"登录已失效"),
+    ACCOUNT_NOT_EXIST(208,"该账号不存在"),
     ;
  
     private Integer code;
  
     private String message;
  
-    ResultEnum(Integer code, String message) {
+    ResponseEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
@@ -39,13 +40,13 @@ public enum ResultEnum {
      *
      * @deprecation:通过code返回枚举
     */
-    public static ResultEnum parse(int code){
-        ResultEnum[] values = values();
-        for (ResultEnum value : values) {
+    public static ResponseEnum parse(int code){
+        ResponseEnum[] values = values();
+        for (ResponseEnum value : values) {
             if(value.getCode() == code){
                 return value;
             }
         }
-        throw  new RuntimeException("Unknown code of ResultEnum");
+        throw  new RuntimeException("Unknown code of ResponseEnum");
     }
 }

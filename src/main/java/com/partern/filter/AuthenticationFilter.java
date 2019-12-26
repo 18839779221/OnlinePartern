@@ -4,7 +4,7 @@
 //import com.alibaba.fastjson.JSONObject;
 //import com.partern.utils.HttpHelper;
 //import com.partern.utils.JwtToken;
-//import com.partern.utils.ResultEnum;
+//import com.partern.utils.ResponseEnum;
 //import com.partern.utils.ResultVO;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -76,7 +76,7 @@
 //                        log.error("filter token放行doFilter失败" + e.getMessage());
 //                    }
 //                } else {
-//                    Map<String, Object> result = ResultVO.result(ResultEnum.FAILURE, token, false);
+//                    Map<String, Object> result = ResultVO.result(ResponseEnum.FAILURE, token, false);
 //                    PrintWriter writer = null;
 //                    OutputStreamWriter osw = null;
 //                    try {

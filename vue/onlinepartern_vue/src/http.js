@@ -56,8 +56,25 @@ export function fetchGet(url, param) {
                 reject(error)
             })
     })
-}
+} 
+
+////返回一个Promise(发送get请求,请求图片内容)
+export function fetchGetImg(url, param) {
+    return new Promise((resolve, reject) => {
+        axios.get(url, { params: param },
+           { responseType: "arraybuffer"},)
+            .then(response => {
+                resolve(response)
+            }, err => {
+                reject(err)
+            })
+            .catch((error) => {
+                reject(error)
+            })
+    })
+} 
 export default {
     fetchPost,
     fetchGet,
+    fetchGetImg,
 }

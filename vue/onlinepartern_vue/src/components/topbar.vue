@@ -14,7 +14,6 @@
               <!-- logo -->
               <img src="@/assets/logo.png" style="width:60px;height:100%;"/>
             </el-menu-item>
-            <el-menu-item>                  </el-menu-item>
             <el-menu-item index="/" @click="getUsers">首页</el-menu-item>
             <el-menu-item index="/my">我的</el-menu-item>
             <el-menu-item index="/search">搜索</el-menu-item>
@@ -27,9 +26,9 @@
       </div>
         <!-- 登陆注册栏 -->
         <div class="d-lorr">
-          <el-menu class="t-el-menu" mode="horizontal" @select="loginOrRegister">
-            <el-menu-item index="1">登陆</el-menu-item>
-            <el-menu-item index="2">注册</el-menu-item>
+          <el-menu class="t-el-menu" mode="horizontal">
+            <el-menu-item index="1" @click="login">登陆</el-menu-item>
+            <el-menu-item index="2" @click="toRegister">注册</el-menu-item>
           </el-menu>
         </div>
     <loginDialog ref="loginref"></loginDialog>
@@ -63,12 +62,11 @@ export default {
       //当前地址栏url更改
       this.$router.push(index);
     },
-    loginOrRegister(index) {
-      console.log(index);
+    login() {
       this.$refs.loginref.dialogVisible = true;
-      if (index == "1") {
-      } else {
-      }
+    },
+    toRegister(){
+      this.$router.push("/register")
     },
     search(){
       console.log(this.searchText)

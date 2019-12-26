@@ -16,4 +16,8 @@ public interface ConcernMapper {
     int updateByPrimaryKeySelective(Concern record);
 
     int updateByPrimaryKey(Concern record);
+
+    int getConcernCount(String uId);
+
+    int getFansCount(String uId);
 }

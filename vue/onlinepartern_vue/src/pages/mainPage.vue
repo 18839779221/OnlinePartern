@@ -4,9 +4,9 @@
       <topbar />
     </div>
     <div class="main_body">
-      <mainBody></mainBody>
+      <router-view/>
+      <!-- <mainBody></mainBody> -->
     </div>
-    <el-divider></el-divider>
     <div class="main_footer">Footer</div>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
 .main_body {
   padding-top: 10px;
   height: 100%;
-  padding-bottom: 100px; 
+  margin-bottom: 100px; 
 }
 .main_footer {
   height: 100%;
