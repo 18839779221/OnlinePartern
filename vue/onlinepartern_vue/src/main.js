@@ -8,12 +8,16 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import QS from 'qs'
 import md5 from 'js-md5';
+import dateFormat from "@/utils/dateFormat"
 
 
 
 Vue.prototype.qs = QS;
 Vue.prototype.$axios = axios;
 Vue.prototype.$md5 = md5;
+Vue.prototype.$serverPath = "http://localhost:8080/api";
+Vue.prototype.$websocketPath = "ws://localhost:8080/api";
+Date.prototype.Format = dateFormat.formatDate;
 
 Vue.use(ElementUI)
 Vue.use(axios)

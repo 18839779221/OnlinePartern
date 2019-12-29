@@ -242,6 +242,7 @@ export default {
   },
   methods: {
     register() {
+      console.log(this.ruleForm)
       http
         .fetchPost("/user/register", {
           phone: this.ruleForm.phone,
@@ -264,6 +265,7 @@ export default {
             message: '注册成功，即将跳转到主页！'
           }); 
           console.log(data);
+          this.$router.push('/')
         })
         .catch(err => console.log(err));
     },

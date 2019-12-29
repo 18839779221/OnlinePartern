@@ -46,7 +46,7 @@ public class MyMD5 {
  
             String inputWithSalt = inputStr + salt;//加盐，输入加盐
             String hashResult = byte2HexStr(md.digest(inputWithSalt.getBytes()));//哈希计算,转换输出
-            System.out.println("加盐密文："+hashResult);
+            //System.out.println("加盐密文："+hashResult);
  
             /*将salt存储到hash值中，用于登陆验证密码时使用相同的盐*/
             char[] cs = new char[48];
@@ -75,7 +75,7 @@ public class MyMD5 {
 
             String inputWithSalt = inputStr + salt;//加盐，输入加盐
             String hashResult = byte2HexStr(md.digest(inputWithSalt.getBytes()));//哈希计算,转换输出
-            System.out.println("加盐密文："+hashResult);
+//            System.out.println("加盐密文："+hashResult);
 
             /*将salt存储到hash值中，用于登陆验证密码时使用相同的盐*/
             char[] cs = new char[48];
