@@ -87,5 +87,13 @@
   <select id="getFansCount" resultType="java.lang.Integer">
     select count(*) from concern where u_id2 = #{uId}
   </select>
-  
+
+  <select id="getFansList" resultType="com.partern.bean.Concern">
+    select * from concern where u_id2 = #{uId}
+  </select>
+
+  <select id="getConcernList" resultType="com.partern.bean.Concern">
+    select * from concern where u_id1 = #{uId}
+  </select>
+
 </mapper>

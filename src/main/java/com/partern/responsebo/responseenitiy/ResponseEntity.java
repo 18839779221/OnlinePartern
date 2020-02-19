@@ -1,9 +1,8 @@
-package com.partern.responsebo;
+package com.partern.responsebo.responseenitiy;
 
 import com.partern.utils.ResponseEnum;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class ResponseEntity implements Serializable {
 
@@ -32,6 +31,30 @@ public class ResponseEntity implements Serializable {
     }
 
     /**
+     * 简单通用的查询返回体，若无需特别说明即可使用此返回体
+     * @param bodyData  返回内容
+     * @return  响应实体
+     */
+    public static ResponseEntity getPublicQueryResponse(Object bodyData){
+        Header header = new Header();
+        header.setType(bodyData==null?ResponseEnum.FAILURE:ResponseEnum.SUCCESS);
+        Body body = new Body(bodyData);
+        return new ResponseEntity(header,body);
+    }
+
+    /**
+     * 简单通用的更新返回体，若无需特别说明即可使用此返回体
+     * @param affected  更新后受影响的行数，行数为0表示更新失败
+     * @return  响应实体
+     */
+    public static ResponseEntity getPublicUpdateResponse(int affected){
+        Header header = new Header();
+        header.setType(affected==0?ResponseEnum.FAILURE:ResponseEnum.SUCCESS);
+        Body body = new Body(affected);
+        return new ResponseEntity(header,body);
+    }
+
+    /**
      * 简单通用的成功返回体，若无需特别说明即可使用此返回体
      * @param bodyData  返回内容
      * @return  响应实体
@@ -39,7 +62,6 @@ public class ResponseEntity implements Serializable {
     public static ResponseEntity getPublicSuccessResponse(Object bodyData){
         Header header = new Header();
         header.setType(ResponseEnum.SUCCESS);
-        header.setTimestamp(new Date().getTime()+"");
         Body body = new Body(bodyData);
         return new ResponseEntity(header,body);
     }
@@ -52,7 +74,6 @@ public class ResponseEntity implements Serializable {
     public static ResponseEntity getPublicFailResponse(Object bodyData){
         Header header = new Header();
         header.setType(ResponseEnum.FAILURE);
-        header.setTimestamp(new Date().getTime()+"");
         Body body = new Body(bodyData);
         return new ResponseEntity(header,body);
     }

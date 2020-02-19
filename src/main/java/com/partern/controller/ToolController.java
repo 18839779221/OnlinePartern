@@ -1,8 +1,9 @@
 package com.partern.controller;
 
-import com.partern.responsebo.ResponseEntity;
+import com.partern.responsebo.responseenitiy.ResponseEntity;
 import com.partern.utils.Log;
 import com.partern.utils.VerifyCodeUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import java.util.Date;
 
 @RequestMapping("/tool")
 @RestController
+@Slf4j
 public class ToolController {
 
     @RequestMapping("/getValidCode")
@@ -53,29 +55,29 @@ public class ToolController {
         String path = request.getServletContext().getRealPath("/upload");
         File dir = new File(path);
 
-        Log.info("文件保存路径:"+path);
+        log.info("文件保存路径:"+path);
         if(!dir.isDirectory()||!dir.exists()){
             dir.mkdir();
         }
 
-        Log.info("上传文件大小:" + picture.getSize());
+        log.info("上传文件大小:" + picture.getSize());
 
         //获取原始文件名称(包含格式)
         String originalFileName = picture.getOriginalFilename();
-        Log.info("原始文件名称：" + originalFileName);
+        log.info("原始文件名称：" + originalFileName);
 
         String type = originalFileName.substring(originalFileName.lastIndexOf('.')+1);
-        Log.info("文件类型:" + type);
+        log.info("文件类型:" + type);
 
         //获取文件名称，（不包含格式）
         String name = originalFileName.substring(0,originalFileName.lastIndexOf('.'));
-        Log.info("文件名称:" + name);
+        log.info("文件名称:" + name);
 
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         String date = sdf.format(d);
         String fileName = date + name + "." + type;
-        Log.info("新文件名称:" + fileName);
+        log.info("新文件名称:" + fileName);
         File targetFile = new File(fileName);
         try {
             picture.transferTo(targetFile);

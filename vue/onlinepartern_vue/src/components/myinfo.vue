@@ -79,23 +79,21 @@ export default {
       http
         .fetchPost("/user/getUserById", { phone: this.getUserPhone() })
         .then(data => {
-          console.log(data);
-          this.parseData(data["data"]);
+          this.parseData(data['data']);
         })
         .catch(err => console.log(err));
     },
     getUserPhone() {
-      localStorage.setItem("phone", "18839779221");
-      console.log(localStorage.getItem("phone"));
       return localStorage.getItem("phone");
     },
     parseData(data) {
-      if (data["header"]["code"] == 101) {
-        this.user = data["body"]["data"];
+      console.log(data);
+      if (data['header']['code'] == 101) {
+        this.user = data['body']['data'];
       } else {
         this.$message({
           type: "error",
-          message: data["header"]["code"] +" : "+ data["header"]["msg"],
+          message: data.header.code +" : "+ data.header.msg,
         });
       }
     }
@@ -110,6 +108,10 @@ export default {
 <style>
 .main {
   margin-bottom: 30px;
+}
+.box-card{
+  width: 100%;
+  height: 100%;
 }
 .d-header {
   text-align: left;

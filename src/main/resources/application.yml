@@ -44,6 +44,13 @@ spring:
 #        login-password: admin
 #        allow: 127.0.0.1
         #deny: 192.168.1.100
+  #rabbit配置
+  rabbitmq:
+    host: 172.19.241.1
+    port: 5672
+    username: root
+    password: root
+
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
@@ -55,3 +62,4 @@ logging:
     com:
       partern:
         mapper : debug
+

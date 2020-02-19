@@ -1,8 +1,9 @@
-package com.partern.responsebo;
+package com.partern.responsebo.responseenitiy;
 
 import com.partern.utils.ResponseEnum;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Header implements Serializable {
 
@@ -43,7 +44,9 @@ public class Header implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public Header(){}
+    public Header(){
+        timestamp = new Date().getTime()+"";
+    }
 
     public Header(int code, String msg, String token, String timestamp) {
         this.code = code;

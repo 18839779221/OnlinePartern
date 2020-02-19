@@ -2,6 +2,7 @@ package com.partern.mapper;
 
 import com.partern.bean.Concern;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Repository
 public interface ConcernMapper {
@@ -20,4 +21,8 @@ public interface ConcernMapper {
     int getConcernCount(String uId);
 
     int getFansCount(String uId);
+
+    List<Concern> getFansList(String uId);
+
+    List<Concern> getConcernList(String uId);
 }

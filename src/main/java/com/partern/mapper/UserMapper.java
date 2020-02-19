@@ -26,4 +26,8 @@ public interface UserMapper {
     User getUserByuId(String uId);
 
     List<User> findUsers();
+
+    String getNickByuId(String u_id);
+
+    List<User> getLimitUsers(int limit);
 }

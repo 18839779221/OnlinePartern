@@ -67,7 +67,11 @@ export default {
     parseData(data) {
       if (data["header"]["code"] == 203) {
         localStorage.setItem("user", JSON.stringify(data["body"]["data"]));
+        localStorage.setItem("phone",data["body"]["data"]["phone"])
+        localStorage.setItem("nick",data["body"]["data"]["nick"])
         console.log(localStorage.getItem("user"))
+        this.$router.push("/")
+        this.$router.go(0)
       } else {
         this.$message({
           type: "error",

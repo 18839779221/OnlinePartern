@@ -222,4 +222,12 @@
     select * from user
   </select>
 
+  <select id="getNickByuId" resultType="java.lang.String">
+    select u_nick from user where u_id = #{u_id}
+  </select>
+
+  <select id="getLimitUsers" resultType="com.partern.bean.User">
+    select * from user limit #{limit}
+  </select>
+
 </mapper>

@@ -3,17 +3,18 @@ package com.partern.service;
 import com.partern.bean.Concern;
 import com.partern.bean.User;
 import com.partern.mapper.ConcernMapper;
-import com.partern.responsebo.Body;
-import com.partern.responsebo.Header;
-import com.partern.responsebo.ResponseEntity;
+import com.partern.responsebo.*;
 import com.partern.mapper.UserMapper;
-import com.partern.responsebo.ResponseUser;
+import com.partern.responsebo.responseenitiy.Body;
+import com.partern.responsebo.responseenitiy.Header;
+import com.partern.responsebo.responseenitiy.ResponseEntity;
 import com.partern.utils.MyMD5;
 import com.partern.utils.ResponseEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -41,7 +42,6 @@ public class UserServiceImpl implements UserService{
         response.setBody(new Body(new ResponseUser(user,getConcernCount(uId),getFansCount(uId))));
         Header header = new Header();
         header.setType(resType);
-        header.setTimestamp(new Date().getTime()+"");
         response.setHeader(header);
         return response;
     }
@@ -50,43 +50,71 @@ public class UserServiceImpl implements UserService{
     public ResponseEntity getUsers() {
         List<User> users = userMapper.findUsers();
         User.noPassword(users);     //不传密码到前端
-        ResponseEntity response = new ResponseEntity();
-        response.setBody(new Body(users));
-        Header header = new Header();
-        ResponseEnum resType = null;
-        resType = users==null?ResponseEnum.FAILURE:ResponseEnum.SUCCESS;
-        header.setType(resType);
-        header.setTimestamp(new Date().getTime()+"");
-        response.setHeader(header);
-        return response;
+        return ResponseEntity.getPublicQueryResponse(users);
     }
 
     @Override
     public ResponseEntity register(User user) {
         user.setU_password(encodePassword(user.getU_password()));
         int result = userMapper.insert(user);
-        ResponseEntity response = new ResponseEntity();
-        response.setBody(new Body(result));
-        Header header = new Header();
-        ResponseEnum resType = null;
-        resType = result==0?ResponseEnum.FAILURE:ResponseEnum.SUCCESS;
-        header.setType(resType);
-        header.setTimestamp(new Date().getTime()+"");
-        response.setHeader(header);
-        return response;
+        return ResponseEntity.getPublicUpdateResponse(result);
     }
 
     @Override
     public ResponseEntity getUserById(String phone) {
         User user = userMapper.getUserByuId(phone);
-        ResponseEntity response = new ResponseEntity();
-        response.setBody(new Body(new ResponseUser(user,getConcernCount(phone),getFansCount(phone))));
-        Header header = new Header();
-        ResponseEnum resType = user==null?ResponseEnum.FAILURE:ResponseEnum.SUCCESS;
-        header.setType(resType);
-        header.setTimestamp(new Date().getTime()+"");
-        response.setHeader(header);
-        return response;
+        User.noPassword(user);
+        int fansCount = concernMapper.getFansCount(phone);
+        int concernCount = concernMapper.getConcernCount(phone);
+        return ResponseEntity.getPublicQueryResponse(new ResponseUser(user,concernCount,fansCount));
+    }
+
+    @Override
+    public ResponseEntity getFansListById(String uId) {
+        List<Concern> fans = concernMapper.getFansList(uId);
+        return ResponseEntity.getPublicQueryResponse(fans);
+    }
+
+    @Override
+    public ResponseEntity getConcernListById(String uId) {
+        List<Concern> concerns = concernMapper.getConcernList(uId);
+        return ResponseEntity.getPublicQueryResponse(concerns);
+    }
+
+    @Override
+    public ResponseEntity getFansAndConcernListById(String uId) {
+        List<Concern> concerns =  concernMapper.getConcernList(uId);
+        List<Concern> fans = concernMapper.getFansList(uId);
+        //构建关注状态，主要找出相互关注的用户
+        HashMap<String, ResponseConcern> map = new HashMap<>();
+        fans.forEach(fan->{
+            String fid = fan.getU_id1();
+            String fanNick = userMapper.getNickByuId(fid);
+            map.put(fid,new ResponseConcern(fid,fanNick, ResponseConcern.CONCERN_STATE_FANS));
+        });
+        concerns.forEach(concern->{
+            String cid = concern.getU_id2();
+            if(map.containsKey(cid)){
+                map.get(cid).setState(ResponseConcern.CONCERN_STATE_CONCERNEACH);
+            }else{
+                String concernNick = userMapper.getNickByuId(cid);
+                map.put(cid,new ResponseConcern(cid,concernNick, ResponseConcern.CONCERN_STATE_CONCERN));
+            }
+        });
+        System.out.println(map.values());
+        return ResponseEntity.getPublicQueryResponse(map.values());
+    }
+
+    @Override
+    public ResponseEntity getRecommmendUser(int limit) {
+        List<User> users = userMapper.getLimitUsers(limit);
+        List<ResponseUser> responseUsers = new ArrayList<>();
+        users.forEach(user->{
+            int fansCount = concernMapper.getFansCount(user.getU_id());
+            int concernCount = concernMapper.getConcernCount(user.getU_id());
+            responseUsers.add(new ResponseUser(user,concernCount,fansCount));
+        });
+        return ResponseEntity.getPublicQueryResponse(responseUsers);
     }
 
     /**

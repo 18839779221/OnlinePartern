@@ -1,7 +1,7 @@
 package com.partern.service;
 
 import com.partern.bean.User;
-import com.partern.responsebo.ResponseEntity;
+import com.partern.responsebo.responseenitiy.ResponseEntity;
 
 public interface UserService {
 
@@ -12,4 +12,12 @@ public interface UserService {
     ResponseEntity register(User user);
 
     ResponseEntity getUserById(String phone);
+
+    ResponseEntity getFansListById(String uId);
+
+    ResponseEntity getConcernListById(String uId);
+
+    ResponseEntity getFansAndConcernListById(String uId);
+
+    ResponseEntity getRecommmendUser(int i);
 }

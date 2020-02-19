@@ -1,4 +1,4 @@
-package com.partern.responsebo;
+package com.partern.responsebo.responseenitiy;
 
 import java.io.Serializable;
 

@@ -21,7 +21,7 @@ export default {
 #main {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   justify-content: space-between;
 }
 .view-pager {

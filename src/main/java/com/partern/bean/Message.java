@@ -1,5 +1,7 @@
 package com.partern.bean;
 
+import com.partern.websocket.WSEntity;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,6 +11,15 @@ public class Message implements Serializable {
     private String u_id2;       //用户2id
     private String m_date;      //消息时间
     private String m_content;   //消息内容
+    private int m_state;     //消息状态，主要是是否已读
+
+    public Message(WSEntity entity) {
+        u_id1 = entity.getFrom();
+        u_id2 = entity.getTo();
+        m_content = entity.getPayload().getMsg();
+        m_date = entity.getTime();
+        m_state = 0;
+    }
 
     public int getM_id() {
         return m_id;
@@ -50,6 +61,14 @@ public class Message implements Serializable {
         this.m_content = m_content;
     }
 
+    public int getM_state() {
+        return m_state;
+    }
+
+    public void setM_state(int m_state) {
+        this.m_state = m_state;
+    }
+
     public Message() {
     }
 
@@ -61,6 +80,7 @@ public class Message implements Serializable {
                 ", u_id2='" + u_id2 + '\'' +
                 ", m_date='" + m_date + '\'' +
                 ", m_content='" + m_content + '\'' +
+                ", m_state='" + m_state + '\'' +
                 '}';
     }
 }

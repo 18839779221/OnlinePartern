@@ -4,7 +4,7 @@
       <div class="left">
         <p class="p-title">
           <font size="4">
-            <strong>聊天室</strong>
+            <strong>{{chat_title}}</strong>
           </font>
         </p>
         <div class="d-userlist"></div>
@@ -52,17 +52,21 @@ export default {
   data() {
     return {
       input_msg: "",
+      user_phone: "",
       user_nick: "",
-      canSendMsg: true,
-      ws: new WebSocket(this.$websocketPath+"/endpoint"),
+      chat_title: "需登陆才能进行聊天",
+      canSendMsg: false,
+      ws: null,
       msg_list: [
         {
           nick: "马克",
+          phone: "1234566788",
           time: "12:30",
           msg: "Good Afternoon EveryOne!"
         },
         {
           nick: "tom",
+          phone: "12345661234",
           time: "12:30",
           msg: "Good Afternoon EveryOne!"
         }
@@ -73,22 +77,45 @@ export default {
     sendMsg() {
       if (this.input_msg.trim() == "") return;
       var current_msg = {
-        nick: this.user_nick,
+        type: "groupmsg",
+        from: this.user_phone,
+        to: "all",
         time: new Date().Format("yyyy-MM-dd HH:mm:ss"),
-        msg: this.input_msg
+        payload: {
+          nick: this.user_nick,
+          msg: this.input_msg
+        }
       };
-      this.msg_list.push(current_msg);
-      this.sendToServer(current_msg);
+      console.log(current_msg);
+      this.showMsg(current_msg);
+      //this.msg_list.push(current_msg);
+      this.sendToServer(JSON.stringify(current_msg));
       this.input_msg = "";
+    },
+    showMsg(msg) {
+      var item =  {
+        phone:msg.from,
+        time:msg.time,
+        nick:msg.payload.nick,
+        msg:msg.payload.msg,
+      }
+      this.msg_list.push(item);
     },
     //消息发送到服务器
     sendToServer(current_msg) {
-      this.ws.send(JSON.stringify(current_msg));
+      this.ws.send(current_msg);
     },
     initChatRoom() {
       var user = JSON.parse(localStorage.getItem("user"));
-      if (user == null) {
-        canSendMsg = false;
+      console.log(user);
+      this.user_phone = user["phone"];
+      if (user != null) {
+        this.canSendMsg = true;
+        this.chat_title = "聊天室";
+        if(this.$websocket==null){
+          this.$websocket = new WebSocket(this.$websocketPath+"?"+user.phone);
+        };
+        this.ws = this.$websocket;
       }
       if (user.nick == "") {
         this.user_nick = user["phone"];
@@ -99,8 +126,8 @@ export default {
     receiveMessage(event) {
       console.log(" Receive Message Is :" + event.data);
       var msg = JSON.parse(event.data);
-      if (msg['nick'] != this.user_nick) {
-        this.msg_list.push(msg);
+      if (msg.from != this.user_phone) {
+        this.showMsg(msg);
       }
     },
     receiveServiceMsg() {

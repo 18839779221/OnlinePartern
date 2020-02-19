@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.partern.mapper.MessageMapper">
   <resultMap id="BaseResultMap" type="com.partern.bean.Message">
-    <id column="m_id" jdbcType="INTEGER" property="mId" />
-    <result column="u_id1" jdbcType="VARCHAR" property="uId1" />
-    <result column="u_id2" jdbcType="VARCHAR" property="uId2" />
-    <result column="m_date" jdbcType="TIMESTAMP" property="mDate" />
+    <id column="m_id" jdbcType="INTEGER" property="m_id" />
+    <result column="u_id1" jdbcType="VARCHAR" property="u_id1" />
+    <result column="u_id2" jdbcType="VARCHAR" property="u_id2" />
+    <result column="m_date" jdbcType="TIMESTAMP" property="m_date" />
+    <result column="m_state" jdbcType="INTEGER" property="m_state" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.partern.bean.Message">
-    <result column="m_content" jdbcType="LONGVARCHAR" property="mContent" />
+    <result column="m_content" jdbcType="LONGVARCHAR" property="m_content" />
   </resultMap>
   <sql id="Base_Column_List">
     m_id, u_id1, u_id2, m_date
@@ -22,86 +23,101 @@
     ,
     <include refid="Blob_Column_List" />
     from message
-    where m_id = #{mId,jdbcType=INTEGER}
+    where m_id = #{m_id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from message
-    where m_id = #{mId,jdbcType=INTEGER}
+    where m_id = #{m_id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.partern.bean.Message">
     insert into message (m_id, u_id1, u_id2, 
-      m_date, m_content)
-    values (#{mId,jdbcType=INTEGER}, #{uId1,jdbcType=VARCHAR}, #{uId2,jdbcType=VARCHAR}, 
-      #{mDate,jdbcType=TIMESTAMP}, #{mContent,jdbcType=LONGVARCHAR})
+      m_date, m_content, m_state)
+    values (#{m_id,jdbcType=INTEGER}, #{u_id1,jdbcType=VARCHAR}, #{u_id2,jdbcType=VARCHAR}, 
+      #{m_date,jdbcType=TIMESTAMP}, #{m_content,jdbcType=LONGVARCHAR}, #{m_state,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.partern.bean.Message">
     insert into message
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="mId != null">
+      <if test="m_id != null">
         m_id,
       </if>
-      <if test="uId1 != null">
+      <if test="u_id1 != null">
         u_id1,
       </if>
-      <if test="uId2 != null">
+      <if test="u_id2 != null">
         u_id2,
       </if>
-      <if test="mDate != null">
+      <if test="m_date != null">
         m_date,
       </if>
-      <if test="mContent != null">
+      <if test="m_content != null">
         m_content,
+      </if>
+      <if test="m_state != null">
+        m_state,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="mId != null">
-        #{mId,jdbcType=INTEGER},
+      <if test="m_id != null">
+        #{m_id,jdbcType=INTEGER},
       </if>
-      <if test="uId1 != null">
-        #{uId1,jdbcType=VARCHAR},
+      <if test="u_id1 != null">
+        #{u_id1,jdbcType=VARCHAR},
       </if>
-      <if test="uId2 != null">
-        #{uId2,jdbcType=VARCHAR},
+      <if test="u_id2 != null">
+        #{u_id2,jdbcType=VARCHAR},
       </if>
-      <if test="mDate != null">
-        #{mDate,jdbcType=TIMESTAMP},
+      <if test="m_date != null">
+        #{m_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="mContent != null">
-        #{mContent,jdbcType=LONGVARCHAR},
+      <if test="m_content != null">
+        #{m_content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="m_state != null">
+        #{m_state,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.partern.bean.Message">
     update message
     <set>
-      <if test="uId1 != null">
-        u_id1 = #{uId1,jdbcType=VARCHAR},
+      <if test="u_id1 != null">
+        u_id1 = #{u_id1,jdbcType=VARCHAR},
       </if>
-      <if test="uId2 != null">
-        u_id2 = #{uId2,jdbcType=VARCHAR},
+      <if test="u_id2 != null">
+        u_id2 = #{u_id2,jdbcType=VARCHAR},
       </if>
-      <if test="mDate != null">
-        m_date = #{mDate,jdbcType=TIMESTAMP},
+      <if test="m_date != null">
+        m_date = #{m_date,jdbcType=TIMESTAMP},
       </if>
-      <if test="mContent != null">
-        m_content = #{mContent,jdbcType=LONGVARCHAR},
+      <if test="m_content != null">
+        m_content = #{m_content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="m_state != null">
+        m_state = #{m_state,jdbcType=INTEGER},
       </if>
     </set>
-    where m_id = #{mId,jdbcType=INTEGER}
+    where m_id = #{m_id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.partern.bean.Message">
     update message
-    set u_id1 = #{uId1,jdbcType=VARCHAR},
-      u_id2 = #{uId2,jdbcType=VARCHAR},
-      m_date = #{mDate,jdbcType=TIMESTAMP},
-      m_content = #{mContent,jdbcType=LONGVARCHAR}
-    where m_id = #{mId,jdbcType=INTEGER}
+    set u_id1 = #{u_id1,jdbcType=VARCHAR},
+      u_id2 = #{u_id2,jdbcType=VARCHAR},
+      m_date = #{m_date,jdbcType=TIMESTAMP},
+      m_content = #{m_content,jdbcType=LONGVARCHAR}
+      m_state = #{m_state,jdbcType=INTEGER},
+    where m_id = #{m_id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.partern.bean.Message">
     update message
-    set u_id1 = #{uId1,jdbcType=VARCHAR},
-      u_id2 = #{uId2,jdbcType=VARCHAR},
-      m_date = #{mDate,jdbcType=TIMESTAMP}
-    where m_id = #{mId,jdbcType=INTEGER}
+    set u_id1 = #{u_id1,jdbcType=VARCHAR},
+      u_id2 = #{u_id2,jdbcType=VARCHAR},
+      m_date = #{m_date,jdbcType=TIMESTAMP}
+      m_state = #{m_state,jdbcType=INTEGER},
+    where m_id = #{m_id,jdbcType=INTEGER}
   </update>
+
+  <select id="getLimitMessageByuIds" resultType="com.partern.bean.Message">
+    select *  from message where (u_id1=#{u_id1} and u_id2=#{u_id2}) or (u_id1=#{u_id2} and u_id2=#{u_id1}) order by m_date desc LIMIT #{limit}
+  </select>
 </mapper>
