@@ -1,0 +1,25 @@
+#spring.messages.basename=i18n.login
+##\u7981\u7528\u7F13\u5B58
+#spring.thymeleaf.cache=false
+ #
+#spring.mvc.date-format=yyyy-MM-dd
+
+
+spring:
+  messages:
+    basename: i18n.login
+  thymeleaf:
+    cache: false
+  mvc:
+    date-format: yyyy-MM-dd
+  datasource:
+    url: jdbc:mysql:///hm49?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+mybatis:
+  type-aliases-package: com.atguigu.springnoot.entities
+server:
+  port: 8083
