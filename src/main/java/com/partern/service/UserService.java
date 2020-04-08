@@ -20,4 +20,8 @@ public interface UserService {
     ResponseEntity getFansAndConcernListById(String uId);
 
     ResponseEntity getRecommmendUser(int i);
+
+    ResponseEntity searchUserByIdOrNick(String searchText);
+
+    ResponseEntity updateLike(String phone,int like);
 }

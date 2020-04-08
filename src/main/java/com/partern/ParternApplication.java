@@ -10,12 +10,14 @@ import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 
 @ServletComponentScan
 @SpringBootApplication
 @MapperScan("com.partern.mapper")
+@EnableCaching
 public class ParternApplication extends SpringBootServletInitializer {
 
     @Override

@@ -230,4 +230,16 @@
     select * from user limit #{limit}
   </select>
 
+  <select id="getLikeUsersById" resultType="com.partern.bean.User">
+    select * from user where u_id like "%" + #{id} + "%"
+  </select>
+
+  <select id="getLikeUsersByNick" resultType="com.partern.bean.User">
+    select * from user where u_nick like "%" + #{nick} + "%"
+  </select>
+
+  <update id="updateLike">
+    update user set u_like=#{u_like} where u_id=#{u_id}
+  </update>
+
 </mapper>

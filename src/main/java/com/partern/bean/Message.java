@@ -1,5 +1,6 @@
 package com.partern.bean;
 
+import com.partern.websocket.MsgPayload;
 import com.partern.websocket.WSEntity;
 
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public class Message implements Serializable {
     public Message(WSEntity entity) {
         u_id1 = entity.getFrom();
         u_id2 = entity.getTo();
-        m_content = entity.getPayload().getMsg();
+        m_content = ((MsgPayload)entity.getPayload()).getMsg();
         m_date = entity.getTime();
         m_state = 0;
     }

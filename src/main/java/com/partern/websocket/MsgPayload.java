@@ -2,11 +2,16 @@ package com.partern.websocket;
 
 import java.io.Serializable;
 
-public class MsgPayload implements Serializable {
+public class MsgPayload implements Serializable,Payload {
     String msg;
     String nick;
 
     public MsgPayload(){}
+
+    public MsgPayload(String msg,String nick){
+        this.msg = msg;
+        this.nick = nick;
+    }
 
     public String getMsg() {
         return msg;

@@ -176,4 +176,12 @@ public class User implements Serializable {
         user.setU_password("");
         return user;
    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof User){
+            return this.u_id == ((User) obj).u_id;
+        }
+        return false;
+    }
 }

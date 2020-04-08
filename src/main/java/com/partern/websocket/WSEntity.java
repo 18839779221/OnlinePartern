@@ -1,5 +1,7 @@
 package com.partern.websocket;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 
 public class WSEntity implements Serializable {
@@ -7,7 +9,7 @@ public class WSEntity implements Serializable {
     private String from;
     private String to;
     private String time;
-    private MsgPayload payload;
+    private Object payload;
 
     public String getType() {
         return type;
@@ -41,11 +43,11 @@ public class WSEntity implements Serializable {
         this.time = time;
     }
 
-    public MsgPayload getPayload() {
+    public Object getPayload() {
         return payload;
     }
 
-    public void setPayload(MsgPayload payload) {
+    public void setPayload(Payload payload) {
         this.payload = payload;
     }
 

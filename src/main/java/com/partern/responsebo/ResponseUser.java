@@ -1,9 +1,12 @@
 package com.partern.responsebo;
 
 import com.partern.bean.User;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+@Component
 public class ResponseUser implements Serializable {
     private String phone;     //手机号
     private String nick;      //昵称
@@ -22,6 +25,9 @@ public class ResponseUser implements Serializable {
     private int count_fans;   //粉丝数
     private int count_concern;//关注人数
 
+    String headImgPrefix = "op";
+    String headImgPath = "http://localhost:8080/api/upload";
+
     public ResponseUser(User user,int count_concern,int count_fans){
         if(user == null) return;
         phone = user.getU_id();
@@ -33,14 +39,17 @@ public class ResponseUser implements Serializable {
         income = user.getU_income();
         addr = user.getU_addr();
         height = user.getU_height();
-        img = user.getU_img();
         note = user.getU_note();
         marrage = user.getU_marrage();
         like = user.getU_like();
         this.count_fans = count_fans;
         this.count_concern = count_concern;
+        setImg(user.getU_img());
+
 
     }
+
+    public ResponseUser(){ }
 
     public String getPhone() {
         return phone;
@@ -119,6 +128,10 @@ public class ResponseUser implements Serializable {
     }
 
     public void setImg(String img) {
+        if(img.startsWith(headImgPrefix)){
+            this.img = headImgPath + "/" + img;
+            return ;
+        }
         this.img = img;
     }
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.partern.mapper.ActiveMapper">
+  <resultMap id="BaseResultMap" type="com.partern.bean.Active">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="active_event" jdbcType="VARCHAR" property="active_event" />
+    <result column="active_time" jdbcType="TIMESTAMP" property="active_time" />
+    <result column="active_location" jdbcType="VARCHAR" property="active_location" />
+  </resultMap>
+
+
+
+  <select id="getLimitActives" parameterType="java.lang.Integer" resultType="com.partern.bean.Active">
+    select *
+    from active
+    order by active_time desc
+    limit #{limit}
+  </select>
+</mapper>

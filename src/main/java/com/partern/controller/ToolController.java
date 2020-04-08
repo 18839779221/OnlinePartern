@@ -4,6 +4,7 @@ import com.partern.responsebo.responseenitiy.ResponseEntity;
 import com.partern.utils.Log;
 import com.partern.utils.VerifyCodeUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,12 @@ import java.util.Date;
 @RestController
 @Slf4j
 public class ToolController {
+
+    @Value("${head_img.dir}")
+    String uploadDir;
+
+    @Value("${head_img.file_prefix}")
+    String uploadPrefix;
 
     @RequestMapping("/getValidCode")
     public void getValidCode(HttpServletResponse response, HttpServletRequest request){
@@ -45,14 +52,15 @@ public class ToolController {
 
     /**
      *
-     * @param picture   上传的文件，目前仅支持但文件上传
+     * @param picture   上传的文件，目前仅支持单文件上传
      * @param request
      */
     @RequestMapping("/uploadFile")
     public ResponseEntity uploadFile(@RequestParam("picture") MultipartFile picture, HttpServletRequest request){
 
+
         //获取文件在服务器的储存位置
-        String path = request.getServletContext().getRealPath("/upload");
+        String path = request.getServletContext().getRealPath(uploadDir);
         File dir = new File(path);
 
         log.info("文件保存路径:"+path);
@@ -76,9 +84,10 @@ public class ToolController {
         Date d = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         String date = sdf.format(d);
-        String fileName = date + name + "." + type;
+        String fileName = uploadPrefix + date + name + "." + type;
         log.info("新文件名称:" + fileName);
-        File targetFile = new File(fileName);
+        String filePath = path+"/"+fileName;
+        File targetFile = new File(filePath);
         try {
             picture.transferTo(targetFile);
             return ResponseEntity.getPublicSuccessResponse(fileName);
