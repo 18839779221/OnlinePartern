@@ -12,7 +12,7 @@ import org.springframework.web.context.ContextLoader;
 public class HelloController {
 
     @RequestMapping("/")
-    public String hello(){
-        return "main";
+    public ResponseEntity hello(){
+        return ResponseEntity.getPublicSuccessResponse(null);
     }
 }
