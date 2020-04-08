@@ -51,6 +51,8 @@ public class ParternApplication extends SpringBootServletInitializer {
 
         return new HttpMessageConverters(converter);
 
+
+
     }
 
 
